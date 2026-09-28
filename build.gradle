@@ -26,22 +26,10 @@ import org.kohsuke.github.GHReleaseBuilder
 import org.kohsuke.github.GitHub
 
 def getSubprojectVersion(project, version) {
-	// RetroFabric: versioning sederhana tanpa grgit (kompatibel Java 8/17).
-	// Format: <base_version>+<mc_version>, tambah git hash pendek bila tersedia.
-	try {
-		def stdout = new ByteArrayOutputStream()
-		exec {
-			commandLine 'git', 'rev-parse', '--short=8', 'HEAD'
-			standardOutput = stdout
-			workingDir rootProject.projectDir
-		}
-		def hash = stdout.toString().trim()
-		if (!hash.isEmpty()) {
-			return version + "+" + hash + DigestUtils.sha256Hex("${project.mc_version}").substring(0, 2)
-		}
-	} catch (Exception ignored) {
-	}
-	return version + "+local"
+	// RetroFabric: versioning stabil tanpa git hash (kompatibel Java 8/17).
+	// Format: <version>+<mc_version>. Stabil agar nama dev jar Loom tidak
+	// berubah tiap commit (git hash menyebabkan "Failed to check file from zip").
+	return version + "+" + project.mc_version
 }
 
 def getBranch() {
