@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "retrofabric-example-mod-kotlin",
+  "name": "RetroFabric Example Mod (Kotlin)",
+  "version": "1.0.0",
+  "environment": "*",
+  "license": "Apache-2.0",
+  "icon": "assets/retrofabric/icon.png",
+  "contact": {
+    "homepage": "https://github.com/Kartendsy/retrofabric/",
+    "issues": "https://github.com/Kartendsy/retrofabric/retrofabric-api/issues",
+    "sources": "https://github.com/Kartendsy/retrofabric/retrofabric-api"
+  },
+  "authors": [
+    "RetroFabric"
+  ],
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "com.example.retrexample.RetroExampleModKotlin"
+      }
+    ]
+  },
+  "depends": {
+    "minecraft": "1.7.x",
+    "fabricloader": ">0.13",
+    "fabric-language-kotlin": "*",
+    "retrofabric-core": "*",
+    "retrofabric-registry-v1": "*",
+    "retrofabric-recipe-v1": "*",
+    "retrofabric-loot-v1": "*"
+  },
+  "description": "Example Kotlin mod showing the RetroFabric 1.7.10 APIs (copy me!)."
+}

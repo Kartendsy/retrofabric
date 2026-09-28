@@ -336,6 +336,11 @@ sourceSets {
 dependencies {
 	afterEvaluate {
 		subprojects.each {
+			// Example/template modules are built and tested but never bundled.
+			if (it.name.startsWith("retrofabric-example")) {
+				return
+			}
+
 			api project(path: ":${it.name}", configuration: "namedElements")
 
 			testmodImplementation project("${it.name}:").sourceSets.testmod.output
@@ -346,6 +351,10 @@ dependencies {
 remapJar {
 	afterEvaluate {
 		subprojects.each {
+			if (it.name.startsWith("retrofabric-example")) {
+				return
+			}
+
 			// Include the signed or none signed jar from the sub project.
 			nestedJars.from project("${it.name}:").tasks.getByName("remapJar")
 		}

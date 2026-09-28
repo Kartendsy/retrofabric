@@ -1,0 +1,13 @@
+version = getSubprojectVersion(project, "1.0.0")
+
+moduleDependencies(project, [
+		"retrofabric-core",
+		"retrofabric-registry-v1",
+		"retrofabric-recipe-v1",
+		"retrofabric-loot-v1"
+])
+
+// Template code prioritizes readability for beginners over style rules.
+tasks.withType(Checkstyle).configureEach {
+	enabled = false
+}
