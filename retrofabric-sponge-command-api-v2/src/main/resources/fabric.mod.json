@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "retrofabric-sponge-command-api-v2",
+  "name": "RetroFabric Sponge Command API (v2)",
+  "version": "${version}",
+  "environment": "*",
+  "license": "Apache-2.0",
+  "icon": "assets/retrofabric/icon.png",
+  "contact": {
+    "homepage": "https://github.com/retrofabric/",
+    "issues": "https://github.com/retrofabric/retrofabric-api/issues",
+    "sources": "https://github.com/retrofabric/retrofabric-api"
+  },
+  "authors": [
+    "RetroFabric",
+    "RetroFabric",
+    "SpongePowered"
+  ],
+  "depends": {
+    "fabricloader": ">=0.4.0"
+  },
+  "entrypoints": {
+    "client": [
+      "id.retrofabric.impl.command.ImplInit"
+    ], "server": [
+      "id.retrofabric.impl.command.ImplInit"
+    ]
+  },
+  "description": "Command API that utilizes SpongeAPI's command api",
+  "mixins": [
+    "retrofabric-sponge-command-api-v2.mixins.json"
+  ]
+}

@@ -1,0 +1,7 @@
+version = getSubprojectVersion(project, "1.0.0")
+
+moduleDependencies(project, [
+		"retrofabric-core",
+		"retrofabric-vanilla-command-api-v1",
+		"retrofabric-permissions-api-v1"
+])

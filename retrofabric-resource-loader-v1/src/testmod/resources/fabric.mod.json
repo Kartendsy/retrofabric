@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "retrofabric-resource-loader-v1-testmod",
+  "description": "Testmod for resource reload api",
+  "version": "1.0.0",
+  "entrypoints": {
+    "client": [
+      "id.retrofabric.test.resource.client.ResourceReloadTest"
+    ]
+  }
+}

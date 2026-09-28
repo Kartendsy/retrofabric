@@ -11,7 +11,6 @@ plugins {
 	id 'maven-publish'
 	id 'fabric-loom' version "0.12.27" apply false
 	id 'org.cadixdev.licenser' version "0.6.1"
-	id "org.ajoberstar.grgit" version "3.1.1"
 	id 'com.matthewprenger.cursegradle' version "1.4.0"
 	id 'signing'
 }
@@ -27,16 +26,22 @@ import org.kohsuke.github.GHReleaseBuilder
 import org.kohsuke.github.GitHub
 
 def getSubprojectVersion(project, version) {
-	if (grgit == null) {
-		return version + "+nogit"
+	// RetroFabric: versioning sederhana tanpa grgit (kompatibel Java 8/17).
+	// Format: <base_version>+<mc_version>, tambah git hash pendek bila tersedia.
+	try {
+		def stdout = new ByteArrayOutputStream()
+		exec {
+			commandLine 'git', 'rev-parse', '--short=8', 'HEAD'
+			standardOutput = stdout
+			workingDir rootProject.projectDir
+		}
+		def hash = stdout.toString().trim()
+		if (!hash.isEmpty()) {
+			return version + "+" + hash + DigestUtils.sha256Hex("${project.mc_version}").substring(0, 2)
+		}
+	} catch (Exception ignored) {
 	}
-	def latestCommits = grgit.log(paths: [rootProject.projectDir.toPath().relativize(project.projectDir.toPath()).toString()], maxCommits: 1)
-	if (latestCommits.isEmpty()) {
-		return version + "+uncommited"
-	} else {
-		return version + "+" + latestCommits.get(0).id.substring(0, 8) +
-				DigestUtils.sha256Hex("${project.mc_version}").substring(0, 2)
-	}
+	return version + "+local"
 }
 
 def getBranch() {
@@ -44,11 +49,20 @@ def getBranch() {
 		def branch = System.getenv().GIT_BRANCH
 		return branch.substring(branch.lastIndexOf("/") + 1)
 	}
-	if (grgit == null) {
-		return "unknown"
+	try {
+		def stdout = new ByteArrayOutputStream()
+		exec {
+			commandLine 'git', 'rev-parse', '--abbrev-ref', 'HEAD'
+			standardOutput = stdout
+			workingDir rootProject.projectDir
+		}
+		def branch = stdout.toString().trim()
+		if (!branch.isEmpty()) {
+			return branch.substring(branch.lastIndexOf("/") + 1)
+		}
+	} catch (Exception ignored) {
 	}
-	def branch = grgit.branch.current().name
-	return branch.substring(branch.lastIndexOf("/") + 1)
+	return "unknown"
 }
 
 def static setupRepositories(RepositoryHandler repositories) {
@@ -105,7 +119,7 @@ allprojects {
 	sourceCompatibility = 1.8
 	targetCompatibility = 1.8
 
-	group = "net.legacyfabric.legacy-fabric-api"
+	group = "id.retrofabric.retrofabric-api"
 
 	sourceSets {
 		testmod {
@@ -153,7 +167,9 @@ allprojects {
 		minecraft("com.mojang:minecraft:${project.mc_version}")
 		mappings("net.fabricmc:yarn:${project.mc_version}+build.${project.yarn_version}:v2")
 		modApi "net.fabricmc:fabric-loader:${project.loader_version}"
-		modApi("net.legacyfabric.legacy-fabric-api:legacy-fabric-logger-api-v1:1.0.3+509c77a039")
+		if (project.name != "retrofabric-logger-api-v1") {
+			modApi project(path: ":retrofabric-logger-api-v1", configuration: "namedElements")
+		}
 		implementation("com.google.guava:guava:31.1-jre")
 		//implementation 'com.mojang:brigadier:1.0.17'
 
@@ -254,8 +270,8 @@ subprojects {
 	dependencies {
 		testmodImplementation sourceSets.main.output
 
-		if (project.name != "legacy-fabric-resource-loader-v1") {
-			testmodImplementation project(path: ':legacy-fabric-resource-loader-v1', configuration: 'namedElements')
+		if (project.name != "retrofabric-resource-loader-v1") {
+			testmodImplementation project(path: ':retrofabric-resource-loader-v1', configuration: 'namedElements')
 		}
 	}
 
@@ -337,8 +353,6 @@ dependencies {
 			testmodImplementation project("${it.name}:").sourceSets.testmod.output
 		}
 	}
-
-	include("net.legacyfabric.legacy-fabric-api:legacy-fabric-logger-api-v1:1.0.3+509c77a039");
 }
 
 remapJar {
@@ -358,13 +372,13 @@ curseforge {
 	}
 	project {
 		id = '400281'
-		changelog = 'A changelog can be found at https://github.com/Legacy-Fabric/fabric/commits'
+		changelog = 'A changelog can be found at https://github.com/retrofabric/retrofabric-api/commits'
 		releaseType = 'beta'
 		addGameVersion '1.7.10'
 		addGameVersion 'Fabric'
 
 		mainArtifact(remapJar) {
-			displayName = "[${project.mc_version}] Legacy Fabric API ${project.base_version}"
+			displayName = "[${project.mc_version}] RetroFabric API ${project.base_version}"
 		}
 
 		afterEvaluate {
@@ -386,7 +400,7 @@ task github(dependsOn: remapJar) {
 		def repository = github.getRepository(ENV.GITHUB_REPOSITORY)
 
 		def releaseBuilder = new GHReleaseBuilder(repository, version as String)
-		releaseBuilder.name("[$project.minecraft_version] Legacy Fabric API $project.version")
+		releaseBuilder.name("[$project.minecraft_version] RetroFabric API $project.version")
 		releaseBuilder.body(ENV.CHANGELOG ?: "No changelog provided")
 		releaseBuilder.commitish(getBranch())
 		releaseBuilder.prerelease(false)
@@ -399,11 +413,15 @@ task github(dependsOn: remapJar) {
 // A task to ensure that the version being released has not already been released.
 task checkVersion {
 	doFirst {
-		def xml = new URL("https://maven.legacyfabric.net/net/legacyfabric/legacy-fabric-api/legacy-fabric-api/maven-metadata.xml").text
-		def metadata = new XmlSlurper().parseText(xml)
-		def versions = metadata.versioning.versions.version*.text();
-		if (versions.contains(version)) {
-			throw new RuntimeException("${version} has already been released!")
+		try {
+			def xml = new URL("https://maven.legacyfabric.net/id/retrofabric/retrofabric-api/retrofabric-api/maven-metadata.xml").text
+			def metadata = new XmlSlurper().parseText(xml)
+			def versions = metadata.versioning.versions.version*.text();
+			if (versions.contains(version)) {
+				throw new RuntimeException("${version} has already been released!")
+			}
+		} catch (java.io.FileNotFoundException ignored) {
+			logger.lifecycle("No published metadata yet for RetroFabric, skipping version check.")
 		}
 	}
 }

@@ -1,20 +1,19 @@
 {
   "schemaVersion": 1,
-  "id": "legacy-fabric-api",
-  "name": "Legacy Fabric API",
+  "id": "retrofabric-api",
+  "name": "RetroFabric API",
   "version": "${version}",
   "environment": "*",
   "license": "Apache-2.0",
-  "icon": "assets/legacy-fabric-api/icon.png",
+  "icon": "assets/retrofabric/icon.png",
   "contact": {
-    "homepage": "https://legacy-fabric.github.io/",
-    "issues": "https://github.com/Legacy-Fabric/fabric/issues",
-    "sources": "https://github.com/Legacy-Fabric/fabric"
+    "homepage": "https://github.com/retrofabric/",
+    "issues": "https://github.com/retrofabric/retrofabric-api/issues",
+    "sources": "https://github.com/retrofabric/retrofabric-api"
   },
   "authors": [
-    "Legacy Rewoven",
-    "FabricMC",
-    "Legacy Fabric"
+    "RetroFabric",
+    "FabricMC"
   ],
   "depends": {
     "minecraft": "1.7.x"

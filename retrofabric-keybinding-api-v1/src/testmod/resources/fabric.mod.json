@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "retrofabric-keybinding-api-v1-testmod",
+  "description": "Testmod for keybinding api",
+  "version": "1.0.0",
+  "entrypoints": {
+    "client": [
+      "id.retrofabric.test.keybinding.client.KeybindingTest"
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+version = getSubprojectVersion(project, "1.0.0")
+
+moduleDependencies(project, [
+		"retrofabric-core",
+		"retrofabric-lifecycle-events-v1"
+])

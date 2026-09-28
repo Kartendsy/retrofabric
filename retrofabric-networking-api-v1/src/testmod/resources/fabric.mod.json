@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "retrofabric-networking-api-v1-testmod",
+  "description": "Testmod for networking api",
+  "version": "1.0.0",
+  "entrypoints": {
+    "main": [
+      "id.retrofabric.test.networking.ServerNetworkingTest"
+    ],
+    "client": [
+      "id.retrofabric.test.networking.client.ClientNetworkingTest"
+    ]
+  }
+}

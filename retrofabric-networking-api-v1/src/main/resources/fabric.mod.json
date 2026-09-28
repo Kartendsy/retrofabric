@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "retrofabric-networking-api-v1",
+  "name": "RetroFabric Networking API (v1)",
+  "version": "${version}",
+  "environment": "*",
+  "license": "Apache-2.0",
+  "icon": "assets/retrofabric/icon.png",
+  "contact": {
+    "homepage": "https://github.com/retrofabric/",
+    "issues": "https://github.com/retrofabric/retrofabric-api/issues",
+    "sources": "https://github.com/retrofabric/retrofabric-api"
+  },
+  "authors": [
+    "RetroFabric",
+    "FabricMC",
+    "RetroFabric"
+  ],
+  "description": "Low-level, vanilla protocol oriented networking hooks.",
+  "mixins": [
+    "retrofabric-networking-api-v1.mixins.json"
+  ]
+}

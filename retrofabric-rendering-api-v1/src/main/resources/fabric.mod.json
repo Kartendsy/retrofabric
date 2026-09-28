@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "retrofabric-rendering-api-v1",
+  "name": "RetroFabric Rendering API (V1)",
+  "version": "${version}",
+  "environment": "client",
+  "license": "Apache-2.0",
+  "icon": "assets/retrofabric/icon.png",
+  "contact": {
+    "homepage": "https://github.com/retrofabric/",
+    "issues": "https://github.com/retrofabric/retrofabric-api/issues",
+    "sources": "https://github.com/retrofabric/retrofabric-api"
+  },
+  "authors": [
+    "RetroFabric",
+    "FabricMC"
+  ],
+  "description": "Hooks and registries for rendering-related things.",
+  "mixins": [
+    "retrofabric-rendering-api-v1.mixins.json"
+  ]
+}

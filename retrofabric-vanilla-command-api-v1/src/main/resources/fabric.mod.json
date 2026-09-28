@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "retrofabric-vanilla-command-api-v1",
+  "name": "RetroFabric Vanilla Command API (V0)",
+  "version": "${version}",
+  "environment": "*",
+  "license": "Apache-2.0",
+  "icon": "assets/retrofabric/icon.png",
+  "contact": {
+    "homepage": "https://github.com/retrofabric/",
+    "issues": "https://github.com/retrofabric/retrofabric-api/issues",
+    "sources": "https://github.com/retrofabric/retrofabric-api"
+  },
+  "entrypoints": {
+    "main": [
+      "id.retrofabric.impl.command.CommandInitializer"
+    ]
+  },
+  "authors": [
+    "FabricMC",
+    "RetroFabric"
+  ],
+  "description": "Adds command-related hooks."
+}

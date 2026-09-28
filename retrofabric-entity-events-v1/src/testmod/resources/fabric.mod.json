@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "retrofabric-entity-events-v1-testmod",
+  "description": "Testmod for entity events api",
+  "version": "1.0.0",
+  "entrypoints": {
+    "main": [
+      "id.retrofabric.test.event.entity.EntityEventsTest"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "id.retrofabric.mixin.client.keybinding",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "GameOptionsMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,6 @@
+version = getSubprojectVersion(project, "1.0.0")
+
+dependencies {
+	testmodImplementation project(":retrofabric-lifecycle-events-v1")
+}
+

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "retrofabric-lifecycle-events-v1-testmod",
+  "description": "Testmod for lifecycle events",
+  "version": "1.0.0",
+  "entrypoints": {
+    "main": [
+      "id.retrofabric.test.lifecycle.ServerLifecycleEventsTest"
+    ],
+    "client": [
+      "id.retrofabric.test.lifecycle.client.ClientLifecycleEventsTest"
+    ]
+  }
+}
