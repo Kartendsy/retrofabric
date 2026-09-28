@@ -28,7 +28,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.world.World;
 
 import id.retrofabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import id.retrofabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -36,8 +35,10 @@ import id.retrofabric.api.event.lifecycle.v1.ServerWorldEvents;
 
 @Mixin(MinecraftServer.class)
 public abstract class MinecraftServerMixin {
-	@Shadow
-	public abstract World getWorld();
+	// NOTE (RetroFabric 1.7.10): no no-arg getWorld() exists on 1.7.10's
+	// MinecraftServer (yarn only has getWorld(int) -> method_2991). The old
+	// @Shadow World getWorld() resolved to CommandSource.method_5506 and broke
+	// server startup, so it was removed (it was unused).
 
 	@Shadow
 	public ServerWorld[] worlds;

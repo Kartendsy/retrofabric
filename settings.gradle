@@ -13,6 +13,11 @@ rootProject.name = "retrofabric-api"
 
 include("retrofabric-core")
 include("retrofabric-logger-api-v1")
+include("retrofabric-mod-menu-v1")
+include("retrofabric-registry-v1")
+include("retrofabric-loot-v1")
+include("retrofabric-recipe-v1")
+include("retrofabric-biome-v1")
 include("retrofabric-crash-report-info-v1")
 include("retrofabric-entity-events-v1")
 include("retrofabric-gamerule-api-v1")

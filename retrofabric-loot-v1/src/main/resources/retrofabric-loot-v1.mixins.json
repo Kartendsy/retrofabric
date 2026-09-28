@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "id.retrofabric.mixin.loot",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "entity.LivingEntityMixin",
+    "block.BlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

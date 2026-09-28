@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "retrofabric-mod-menu-v1",
+  "name": "RetroFabric Mod Menu (v1)",
+  "version": "${version}",
+  "environment": "client",
+  "license": "Apache-2.0",
+  "icon": "assets/retrofabric/icon.png",
+  "contact": {
+    "homepage": "https://github.com/retrofabric/",
+    "issues": "https://github.com/retrofabric/retrofabric-api/issues",
+    "sources": "https://github.com/retrofabric/retrofabric-api"
+  },
+  "authors": [
+    "RetroFabric"
+  ],
+  "mixins": [
+    "retrofabric-mod-menu-v1.mixins.json"
+  ],
+  "depends": {
+    "minecraft": "1.7.x",
+    "fabricloader": ">0.13"
+  },
+  "description": "Built-in mod list screen for RetroFabric (1.7.10 client)."
+}

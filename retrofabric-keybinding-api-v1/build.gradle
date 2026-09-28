@@ -1,6 +1,9 @@
 version = getSubprojectVersion(project, "1.0.0")
 
 dependencies {
-	testmodImplementation project(":retrofabric-lifecycle-events-v1")
+	// NOTE: must use namedElements (yarn-named jar), NOT the default
+	// production (intermediary) jar, otherwise dev runs mix named game
+	// classes with intermediary mixin bytecode and crash on shadows.
+	testmodImplementation project(path: ":retrofabric-lifecycle-events-v1", configuration: "namedElements")
 }
 

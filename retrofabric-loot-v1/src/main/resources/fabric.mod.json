@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "retrofabric-loot-v1",
+  "name": "RetroFabric Loot API (v1)",
+  "version": "${version}",
+  "environment": "*",
+  "license": "Apache-2.0",
+  "icon": "assets/retrofabric/icon.png",
+  "contact": {
+    "homepage": "https://github.com/retrofabric/",
+    "issues": "https://github.com/retrofabric/retrofabric-api/issues",
+    "sources": "https://github.com/retrofabric/retrofabric-api"
+  },
+  "authors": [
+    "RetroFabric"
+  ],
+  "mixins": [
+    "retrofabric-loot-v1.mixins.json"
+  ],
+  "depends": {
+    "minecraft": "1.7.x"
+  },
+  "description": "Entity and block drop hooks for 1.7.10."
+}

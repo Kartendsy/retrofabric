@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "id.retrofabric.mixin.client.modmenu",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "TitleScreenModsButtonMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "id.retrofabric.mixin.recipe",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "RecipeDispatcherAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
