@@ -158,7 +158,11 @@ allprojects {
 		mappings("net.fabricmc:yarn:${project.mc_version}+build.${project.yarn_version}:v2")
 		modApi "net.fabricmc:fabric-loader:${project.loader_version}"
 		if (project.name != "retrofabric-logger-api-v1") {
-			modApi project(path: ":retrofabric-logger-api-v1", configuration: "namedElements")
+			// NOTE: must be `api`, not `modApi`. Loom inspects modApi project
+			// jars at configuration time, but the dev jar doesn't exist yet on
+			// clean checkouts (CI), breaking every fresh build. `api` uses the
+			// same namedElements jar without the configuration-time check.
+			api project(path: ":retrofabric-logger-api-v1", configuration: "namedElements")
 		}
 		implementation("com.google.guava:guava:31.1-jre")
 		//implementation 'com.mojang:brigadier:1.0.17'
