@@ -148,7 +148,9 @@ allprojects {
 
 		shareRemapCaches = true
 
-		setIntermediaryUrl('https://maven.legacyfabric.net/net/fabricmc/intermediary/%1$s/intermediary-%1$s-v2.jar');
+		// RetroFabric maven mirror (intermediary + LWJGL fork). Served from
+		// this repo so builds/players don't depend on maven.legacyfabric.net.
+		setIntermediaryUrl('https://raw.githubusercontent.com/Kartendsy/retrofabric/main/maven/net/fabricmc/intermediary/%1$s/intermediary-%1$s-v2.jar');
 	}
 
 	dependencies {

@@ -1,0 +1,12 @@
+{
+  "formatVersion": 1,
+  "+libraries": [
+    {
+      "name": "net.legacyfabric:intermediary:1.7.10",
+      "url": "https://raw.githubusercontent.com/Kartendsy/retrofabric/main/maven/"
+    }
+  ],
+  "name": "Intermediary Mappings",
+  "uid": "net.fabricmc.intermediary",
+  "version": "1.7.10"
+}

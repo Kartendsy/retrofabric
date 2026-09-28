@@ -10,9 +10,9 @@ RetroFabric API is the library for essential hooks and interoperability mechanis
 
 ## Playing (Prism Launcher)
 
-1. Download a 1.7.10 + loader **0.13.3** instance from https://legacyfabric.net/downloads.html and import it into Prism (Add Instance - Import from zip).
+1. Download `retrofabric-1.7.10+loader.0.13.3.zip` from the GitHub release and import it into Prism (Add Instance - Import from zip). It resolves all libraries from this repo's `maven/` mirror, no legacyfabric.net needed.
 2. Copy `retrofabric-api-2.0.0-retrofabric.1+1.7.10.jar` from the GitHub release into the instance's `mods/` folder.
-3. Remove any `legacy-fabric-api` jar if present, and run the instance with **Java 8**.
+3. Set the instance Java to **Java 8** and launch.
 
 ## Developing a mod
 
